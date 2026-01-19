@@ -68,5 +68,14 @@ public class CustomerService {
         }
     }
 
-
+    public String updateCustomer(CustomerDTO customerDTO, String id) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer!=null){
+            Customer customer1 = modelMapper.map(customerDTO, Customer.class);
+            customer1.setCustomerId(id);
+            customerRepository.save(customer1);
+            return "Done";
+        }
+        return "Customer doesn't Exist..!";
+    }
 }
