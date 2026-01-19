@@ -50,4 +50,11 @@ public class CustomerService {
         }
         return customerDTOS;
     }
+
+    public String deleteCustomer(String id) {
+        customerRepository.deleteById(id);
+        return "delete Done";
+    }
+
+
 }

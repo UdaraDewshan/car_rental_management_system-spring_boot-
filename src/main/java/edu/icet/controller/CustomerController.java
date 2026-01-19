@@ -1,9 +1,7 @@
 package edu.icet.controller;
 
 import edu.icet.model.dto.CustomerDTO;
-import edu.icet.model.entity.Customer;
 import edu.icet.service.CustomerService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +24,13 @@ public class CustomerController {
     public List<CustomerDTO> getAll(){
         return customerService.getAll();
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteCustomer(@PathVariable("id") String id){
+        return customerService.deleteCustomer(id);
+    }
+
+
 
 
 
