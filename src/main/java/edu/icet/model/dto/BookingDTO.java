@@ -1,8 +1,15 @@
-package edu.icet.model.entity;
+package edu.icet.model.dto;
 
 import java.util.Date;
+import lombok.*;
 
-public class Book {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+
+public class BookingDTO {
     private String bookingId;
 
     private String userId;
@@ -14,5 +21,4 @@ public class Book {
     private Date endDate;
     private boolean withDriver;
     private Double totalPrice;
-
 }

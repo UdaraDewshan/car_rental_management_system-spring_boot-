@@ -1,11 +1,12 @@
-package edu.icet.model.entity;
+package edu.icet.model.dto;
 import lombok.*;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Payment {
+public class PaymentDTO {
     private String paymentId;
 
     private String bookingId;
