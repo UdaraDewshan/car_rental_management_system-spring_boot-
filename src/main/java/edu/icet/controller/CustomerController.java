@@ -30,6 +30,11 @@ public class CustomerController {
         return customerService.deleteCustomer(id);
     }
 
+    @GetMapping("/search/{id}")
+    public CustomerDTO searchCustomer(@PathVariable("id") String id){
+        return customerService.searchCustomer(id);
+    }
+
 
 
 

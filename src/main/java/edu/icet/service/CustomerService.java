@@ -56,5 +56,17 @@ public class CustomerService {
         return "delete Done";
     }
 
+    public CustomerDTO searchCustomer(String id) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer!=null){
+            CustomerDTO customerDTO = modelMapper.map(customer,CustomerDTO.class);
+            return customerDTO;
+        }else{
+            CustomerDTO customerDTO = new CustomerDTO();
+            customerDTO.setCustomerName("no Data");
+            return customerDTO;
+        }
+    }
+
 
 }
