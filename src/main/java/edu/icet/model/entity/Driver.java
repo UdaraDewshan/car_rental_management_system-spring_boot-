@@ -10,12 +10,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Customer {
+public class Driver {
     @Id
-    private String customerId;
-    private String customerName;
-    private String address;
-    private String email;
-    private String contactNo;
-    private String nic;
+    private String driverId;
+    private String name;
+    private String licenseNo;
+    private boolean states;
 }

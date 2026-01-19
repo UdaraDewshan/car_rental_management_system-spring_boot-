@@ -1,17 +1,14 @@
-package edu.icet.model.entity;
+package edu.icet.model.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Customer {
-    @Id
+
+public class CustomerDTO {
     private String customerId;
     private String customerName;
     private String address;
