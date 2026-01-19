@@ -2,8 +2,7 @@ package edu.icet.model.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -16,10 +15,21 @@ public class Booking {
     @Id
     private String bookingId;
 
-    private String userId;
-    private String carId;
-    private String customerId;
-    private String driverId;
+    @ManyToOne
+    @JoinColumn(name ="user_id")
+    private User userId;
+
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car carId;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customerId;
+
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    private Driver driverId;
 
     private Date startDate;
     private Date endDate;

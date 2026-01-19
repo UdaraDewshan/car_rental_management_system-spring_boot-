@@ -2,6 +2,8 @@ package edu.icet.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import lombok.*;
 
 @Entity
@@ -14,7 +16,9 @@ public class Payment {
     @Id
     private String paymentId;
 
-    private String bookingId;
+    @OneToOne
+    @JoinColumn(name = "booking_id")
+    private Booking bookingId;
 
     private String paymentMethod;
     private double amount;
