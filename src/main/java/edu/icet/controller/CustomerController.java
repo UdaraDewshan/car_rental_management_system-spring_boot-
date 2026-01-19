@@ -22,6 +22,11 @@ public class CustomerController {
     }
 
 
+    @GetMapping("/getAll")
+    public List<CustomerDTO> getAll(){
+        return customerService.getAll();
+    }
+
 
 
 }

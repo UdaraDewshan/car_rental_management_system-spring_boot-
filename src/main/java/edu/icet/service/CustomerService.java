@@ -40,5 +40,14 @@ public class CustomerService {
     }
 
 
+    public List<CustomerDTO> getAll() {
+        List<Customer> all = customerRepository.findAll();
+        ArrayList<CustomerDTO> customerDTOS = new ArrayList<>();
 
+        for (Customer customer : all){
+            CustomerDTO customerDTO = modelMapper.map(customer,CustomerDTO.class);
+            customerDTOS.add(customerDTO);
+        }
+        return customerDTOS;
+    }
 }
