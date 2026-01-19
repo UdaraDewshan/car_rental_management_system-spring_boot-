@@ -10,10 +10,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Driver {
+public class Payment {
     @Id
-    private String driverId;
-    private String name;
-    private String licenseNo;
-    private boolean states;
+    private String paymentId;
+
+    private String bookingId;
+
+    private String paymentMethod;
+    private double amount;
 }
