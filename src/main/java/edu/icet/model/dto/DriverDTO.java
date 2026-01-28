@@ -1,4 +1,5 @@
 package edu.icet.model.dto;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
@@ -7,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class DriverDTO {
+    @Id
     private String driverId;
     private String name;
     private String licenseNo;
