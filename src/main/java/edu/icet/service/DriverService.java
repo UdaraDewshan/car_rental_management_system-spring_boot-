@@ -19,4 +19,9 @@ public class DriverService {
         driverRepository.save(driver);
         return "Driver Added successfully";
     }
+
+    public String deleteDriver(String id) {
+        driverRepository.deleteById(id);
+        return "Deleted Successfully";
+    }
 }

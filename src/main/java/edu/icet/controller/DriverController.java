@@ -3,14 +3,11 @@ package edu.icet.controller;
 import edu.icet.model.dto.DriverDTO;
 import edu.icet.service.DriverService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("driver")
+@RequestMapping("/driver")
 public class DriverController {
 
     final DriverService driverService;
@@ -19,5 +16,11 @@ public class DriverController {
     public String addCustomer(@RequestBody DriverDTO driverDTO){
         return driverService.addDriver(driverDTO);
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteDriver(@PathVariable("id") String id){
+        return driverService.deleteDriver(id);
+    }
+
 
 }
