@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CarServise {
@@ -23,6 +25,17 @@ public class CarServise {
     }
 
     private String genaratedId() {
-        return null;
+        List<Car> cars = carRepository.findAll();
+        String generatedId = "CAR-001";
+        int genId= 1;
+        for (Car car : cars){
+            if (car.getCarId().equals(generatedId)){
+                genId++;
+                generatedId = String.format("CAR-%03d",genId);
+            }else {
+                break;
+            }
+        }
+        return generatedId;
     }
 }
