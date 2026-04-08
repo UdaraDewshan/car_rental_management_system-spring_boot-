@@ -1,11 +1,14 @@
 package edu.icet.service;
 
+import edu.icet.model.dto.CustomerDTO;
 import edu.icet.model.dto.DriverDTO;
 import edu.icet.model.entity.Driver;
 import edu.icet.repository.DriverRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,5 +26,9 @@ public class DriverService {
     public String deleteDriver(String id) {
         driverRepository.deleteById(id);
         return "Deleted Successfully";
+    }
+
+    public List<CustomerDTO> getAllDrivers() {
+        return null;
     }
 }

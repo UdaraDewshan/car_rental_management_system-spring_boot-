@@ -19,13 +19,12 @@ public class CustomerController {
         return customerService.addCustomer(customerDTO);
     }
 
-
     @GetMapping("/getAll")
     public List<CustomerDTO> getAll(){
         return customerService.getAll();
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteCustomer(@PathVariable("id") String id){
         return customerService.deleteCustomer(id);
     }
@@ -39,7 +38,4 @@ public class CustomerController {
     public String updateCustomer(@RequestBody CustomerDTO customerDTO, @PathVariable("id") String id){
         return customerService.updateCustomer(customerDTO,id);
     }
-
-
-
 }

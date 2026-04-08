@@ -39,7 +39,6 @@ public class CustomerService {
         return genarateId;
     }
 
-
     public List<CustomerDTO> getAll() {
         List<Customer> all = customerRepository.findAll();
         ArrayList<CustomerDTO> customerDTOS = new ArrayList<>();
