@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CarServise {
+public class CarService {
 
     final CarRepository carRepository;
     final ModelMapper modelMapper;
@@ -64,5 +64,16 @@ public class CarServise {
         }else {
             return new CarDTO();
         }
+    }
+
+    public String updateCar(CarDTO carDTO, String id) {
+        Car car = carRepository.findById(id).orElse(null);
+        if (car != null) {
+            Car updatedCar = modelMapper.map(carDTO, Car.class);
+            updatedCar.setCarId(id);
+            carRepository.save(updatedCar);
+            return "Car updated successfully";
+        }
+        return "Car doesn't exist..!";
     }
 }
