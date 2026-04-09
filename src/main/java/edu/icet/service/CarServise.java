@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,5 +38,21 @@ public class CarServise {
             }
         }
         return generatedId;
+    }
+
+    public List<CarDTO> getAllCars() {
+        List<Car> all = carRepository.findAll();
+        ArrayList<CarDTO> carDTOS = new ArrayList<>();
+
+        for (Car car : all){
+            CarDTO carDTO = modelMapper.map(car, CarDTO.class);
+            carDTOS.add(carDTO);
+        }
+        return carDTOS;
+    }
+
+    public String deleteCar(String id) {
+        carRepository.deleteById(id);
+        return "Car Delete Successfully";
     }
 }
