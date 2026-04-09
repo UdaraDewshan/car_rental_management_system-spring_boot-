@@ -30,4 +30,9 @@ public class CarController {
         return carServise.deleteCar(id);
     }
 
+    @GetMapping("/search/{id}")
+    public CarDTO searchCar(@PathVariable("id") String id){
+        return carServise.searchCar(id);
+    }
+
 }

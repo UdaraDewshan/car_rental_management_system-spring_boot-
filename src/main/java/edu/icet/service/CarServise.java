@@ -55,4 +55,14 @@ public class CarServise {
         carRepository.deleteById(id);
         return "Car Delete Successfully";
     }
+
+
+    public CarDTO searchCar(String id) {
+        Car car = carRepository.findById(id).orElse(null);
+        if(car != null){
+            return modelMapper.map(car,CarDTO.class);
+        }else {
+            return new CarDTO();
+        }
+    }
 }
