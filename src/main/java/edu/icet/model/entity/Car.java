@@ -19,4 +19,5 @@ public class Car {
     private String fuelType;
     private double pricePerDay;
     private boolean states;
+    private String imageUrl;
 }
