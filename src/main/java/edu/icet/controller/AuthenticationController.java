@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth") // මේක තමයි අපි SecurityConfig එකේ permitAll() දුන්නේ
+@RequestMapping("/auth")
 @RequiredArgsConstructor
-@CrossOrigin // React එකෙන් එන Request block නොවී තියෙන්න මේක අනිවාර්යයි
+@CrossOrigin
 public class AuthenticationController {
 
     private final AuthenticationService service;
