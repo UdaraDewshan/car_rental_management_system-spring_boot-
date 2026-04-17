@@ -26,7 +26,7 @@ public class DriverController {
     }
 
     @GetMapping("/getAll")
-    public List<CustomerDTO> getAllDrivers(){
+    public List<DriverDTO> getAllDrivers(){
         return driverService.getAllDrivers();
     }
 

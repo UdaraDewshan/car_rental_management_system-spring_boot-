@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,7 +29,12 @@ public class DriverService {
         return "Deleted Successfully";
     }
 
-    public List<CustomerDTO> getAllDrivers() {
-        return null;
+    public List<DriverDTO> getAllDrivers() {
+        List<Driver> all = driverRepository.findAll();
+        List<DriverDTO> driverDTOS = new ArrayList<>();
+        for (Driver driver : all){
+            driverDTOS.add(modelMapper.map(driver, DriverDTO.class));
+        }
+        return driverDTOS;
     }
 }
