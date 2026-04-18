@@ -30,9 +30,9 @@ public class AdminSeeder implements CommandLineRunner {
             admin.setRole("ADMIN");
 
             userRepository.save(admin);
-            System.out.println("✅ System Admin Created Successfully!");
+            System.out.println("System Admin Created Successfully!");
         } else {
-            System.out.println("ℹ️ System Admin already exists.");
+            System.out.println("System Admin already exists.");
         }
     }
 }
