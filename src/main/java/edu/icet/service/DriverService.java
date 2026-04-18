@@ -1,6 +1,5 @@
 package edu.icet.service;
 
-import edu.icet.model.dto.CustomerDTO;
 import edu.icet.model.dto.DriverDTO;
 import edu.icet.model.entity.Driver;
 import edu.icet.repository.DriverRepository;

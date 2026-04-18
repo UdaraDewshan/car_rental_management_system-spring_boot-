@@ -1,6 +1,5 @@
 package edu.icet.controller;
 
-import edu.icet.model.dto.CustomerDTO;
 import edu.icet.model.dto.DriverDTO;
 import edu.icet.service.DriverService;
 import lombok.RequiredArgsConstructor;
