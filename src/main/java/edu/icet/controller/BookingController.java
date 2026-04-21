@@ -26,4 +26,9 @@ public class BookingController {
     public ResponseEntity<List<Booking>> getAllBookings() {
         return ResponseEntity.ok(bookingService.getAllBookings());
     }
+
+    public ResponseEntity<String> updateStatus(@PathVariable String bookingId, @RequestParam String status) {
+        return ResponseEntity.ok(bookingService.updateBookingStatud(bookingId, status));
+    }
+
 }

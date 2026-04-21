@@ -46,4 +46,12 @@ public class BookingService {
     public List<Booking> getAllBookings() {
         return bookingRepository.findAll();
     }
+
+    public @Nullable String updateBookingStatud(String bookingId, String status) {
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
+        booking.setStatus(status);
+        bookingRepository.save(booking);
+        return "Booking status updated successfully!"+status;
+    }
 }
