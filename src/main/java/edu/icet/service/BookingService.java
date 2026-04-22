@@ -61,4 +61,12 @@ public class BookingService {
         bookingRepository.save(booking);
         return "Booking status updated successfully!"+status;
     }
+
+    public List<Booking> getMyBookings() {
+        String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(currentUserEmail)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return bookingRepository.findByUserId(user);
+    }
 }
