@@ -6,6 +6,7 @@ import edu.icet.model.entity.Car;
 import edu.icet.model.entity.User;
 import edu.icet.repository.BookingRepository;
 import edu.icet.repository.CarRepository;
+import edu.icet.repository.DriverRepository;
 import edu.icet.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.Nullable;
@@ -22,6 +23,7 @@ public class BookingService {
     private final BookingRepository bookingRepository;
     private final CarRepository carRepository;
     private final UserRepository userRepository;
+    private final DriverRepository driverRepository;
 
     public String addBooking(BookingDTO dto) {
 
@@ -54,12 +56,23 @@ public class BookingService {
         return bookingRepository.findAll();
     }
 
-    public @Nullable String updateBookingStatus(String bookingId, String status) {
+    public String updateBookingStatud(String bookingId, String status, String driverId) {
         Booking booking = bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new RuntimeException("Booking not found"));
+
         booking.setStatus(status);
+
+        if (driverId != null && !driverId.isEmpty()) {
+            edu.icet.model.entity.Driver driver = driverRepository.findById(driverId)
+                    .orElseThrow(() -> new RuntimeException("Driver not found"));
+            booking.setDriverId(driver);
+
+            driver.setStates(false);
+            driverRepository.save(driver);
+        }
+
         bookingRepository.save(booking);
-        return "Booking status updated successfully!"+status;
+        return "Booking status updated successfully!";
     }
 
     public List<Booking> getMyBookings() {

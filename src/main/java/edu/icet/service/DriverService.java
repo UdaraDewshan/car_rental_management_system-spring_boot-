@@ -19,7 +19,6 @@ public class DriverService {
     final DriverRepository driverRepository;
 
     public String addDriver(DriverDTO driverDTO) {
-        // අලුත් ඩ්‍රයිවර් කෙනෙක් ඇඩ් වෙද්දිම ID එකක් හැදිලා, එයා Available (true) වෙනවා!
         driverDTO.setDriverId("DRV-" + UUID.randomUUID().toString().substring(0, 5).toUpperCase());
         driverDTO.setStates(true);
 

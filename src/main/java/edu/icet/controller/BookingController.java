@@ -32,8 +32,11 @@ public class BookingController {
     }
 
     @PutMapping("/updateStatus/{bookingId}")
-    public ResponseEntity<String> updateStatus(@PathVariable String bookingId, @RequestParam String status) {
-        return ResponseEntity.ok(bookingService.updateBookingStatus(bookingId, status));
+    public ResponseEntity<String> updateStatus(
+            @PathVariable String bookingId,
+            @RequestParam String status,
+            @RequestParam(required = false) String driverId) {
+        return ResponseEntity.ok(bookingService.updateBookingStatud(bookingId, status, driverId));
     }
 
     @GetMapping("/my-bookings")
