@@ -24,6 +24,13 @@ public class BookingService {
     private final UserRepository userRepository;
 
     public String addBooking(BookingDTO dto) {
+
+        int overlappingCount = bookingRepository.countOverlappingBookings(dto.getCarId(), dto.getStartDate(), dto.getEndDate());
+
+        if (overlappingCount > 0) {
+            throw new RuntimeException("Sorry! This vehicle is already booked for the selected dates.");
+        }
+
         Booking booking = new Booking();
         booking.setBookingId("B-" + UUID.randomUUID().toString().substring(0, 6));
 
@@ -47,7 +54,7 @@ public class BookingService {
         return bookingRepository.findAll();
     }
 
-    public @Nullable String updateBookingStatud(String bookingId, String status) {
+    public @Nullable String updateBookingStatus(String bookingId, String status) {
         Booking booking = bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new RuntimeException("Booking not found"));
         booking.setStatus(status);

@@ -19,7 +19,11 @@ public class BookingController {
 
     @PostMapping("/add")
     public ResponseEntity<String> addBooking(@RequestBody BookingDTO bookingDTO) {
-        return ResponseEntity.ok(bookingService.addBooking(bookingDTO));
+        try {
+            return ResponseEntity.ok(bookingService.addBooking(bookingDTO));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/getAll")
@@ -27,8 +31,8 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getAllBookings());
     }
 
+    @PutMapping("/updateStatus/{bookingId}")
     public ResponseEntity<String> updateStatus(@PathVariable String bookingId, @RequestParam String status) {
-        return ResponseEntity.ok(bookingService.updateBookingStatud(bookingId, status));
+        return ResponseEntity.ok(bookingService.updateBookingStatus(bookingId, status));
     }
-
 }
