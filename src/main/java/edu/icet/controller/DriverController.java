@@ -10,12 +10,13 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/driver")
+@CrossOrigin
 public class DriverController {
 
     final DriverService driverService;
 
     @PostMapping("/add")
-    public String addCustomer(@RequestBody DriverDTO driverDTO){
+    public String addDriver(@RequestBody DriverDTO driverDTO){
         return driverService.addDriver(driverDTO);
     }
 
@@ -29,7 +30,8 @@ public class DriverController {
         return driverService.getAllDrivers();
     }
 
-
-
-
+    @GetMapping("/available")
+    public List<DriverDTO> getAvailableDrivers(){
+        return driverService.getAvailableDrivers();
+    }
 }

@@ -8,9 +8,9 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class DriverDTO {
-    @Id
     private String driverId;
     private String name;
     private String licenseNo;
     private boolean states;
+    private String contactNumber;
 }

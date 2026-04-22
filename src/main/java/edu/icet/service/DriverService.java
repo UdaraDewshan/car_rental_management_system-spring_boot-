@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +19,10 @@ public class DriverService {
     final DriverRepository driverRepository;
 
     public String addDriver(DriverDTO driverDTO) {
+        // අලුත් ඩ්‍රයිවර් කෙනෙක් ඇඩ් වෙද්දිම ID එකක් හැදිලා, එයා Available (true) වෙනවා!
+        driverDTO.setDriverId("DRV-" + UUID.randomUUID().toString().substring(0, 5).toUpperCase());
+        driverDTO.setStates(true);
+
         Driver driver = modelMapper.map(driverDTO, Driver.class);
         driverRepository.save(driver);
         return "Driver Added successfully";
@@ -32,6 +37,15 @@ public class DriverService {
         List<Driver> all = driverRepository.findAll();
         List<DriverDTO> driverDTOS = new ArrayList<>();
         for (Driver driver : all){
+            driverDTOS.add(modelMapper.map(driver, DriverDTO.class));
+        }
+        return driverDTOS;
+    }
+
+    public List<DriverDTO> getAvailableDrivers() {
+        List<Driver> availableDrivers = driverRepository.findByStatesTrue();
+        List<DriverDTO> driverDTOS = new ArrayList<>();
+        for (Driver driver : availableDrivers){
             driverDTOS.add(modelMapper.map(driver, DriverDTO.class));
         }
         return driverDTOS;
