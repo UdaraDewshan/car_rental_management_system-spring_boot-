@@ -9,7 +9,6 @@ import edu.icet.repository.CarRepository;
 import edu.icet.repository.DriverRepository;
 import edu.icet.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -56,21 +55,38 @@ public class BookingService {
         return bookingRepository.findAll();
     }
 
+
     public String updateBookingStatud(String bookingId, String status, String driverId) {
         Booking booking = bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new RuntimeException("Booking not found"));
 
-        booking.setStatus(status);
-
-        if (driverId != null && !driverId.isEmpty()) {
-            edu.icet.model.entity.Driver driver = driverRepository.findById(driverId)
-                    .orElseThrow(() -> new RuntimeException("Driver not found"));
-            booking.setDriverId(driver);
-
-            driver.setStates(false);
-            driverRepository.save(driver);
+        if (status.equals("REJECTED") || status.equals("COMPLETED")) {
+            if (booking.getDriverId() != null) {
+                edu.icet.model.entity.Driver assignedDriver = booking.getDriverId();
+                assignedDriver.setStates(true);
+                driverRepository.save(assignedDriver);
+            }
         }
 
+        if (driverId != null && !driverId.isEmpty()) {
+
+            if (booking.getDriverId() != null) {
+                edu.icet.model.entity.Driver oldDriver = booking.getDriverId();
+                if (!oldDriver.getDriverId().equals(driverId)) {
+                    oldDriver.setStates(true);
+                    driverRepository.save(oldDriver);
+                }
+            }
+
+            edu.icet.model.entity.Driver newDriver = driverRepository.findById(driverId)
+                    .orElseThrow(() -> new RuntimeException("Driver not found"));
+
+            booking.setDriverId(newDriver);
+            newDriver.setStates(false);
+            driverRepository.save(newDriver);
+        }
+
+        booking.setStatus(status);
         bookingRepository.save(booking);
         return "Booking status updated successfully!";
     }
