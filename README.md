@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚘 [PROJECT NAME]
+# 🚘 [UdaraDirect.car]
 **Next-Generation Car Rental Management System**
 
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot)](https://spring.io/projects/spring-boot)
@@ -16,7 +16,7 @@ A modern, full-stack solution to automate vehicle rentals, streamline fleet mana
 
 ## 🚀 Overview
 
-**[PROJECT NAME]** is built to handle the complexities of a modern car rental business. It provides a seamless reservation experience for customers while giving administrators and fleet managers powerful tools to track vehicle availability, manage bookings, and analyze revenue in real-time.
+**[UdaraDirect.car]** is built to handle the complexities of a modern car rental business. It provides a seamless reservation experience for customers while giving administrators and fleet managers powerful tools to track vehicle availability, manage bookings, and analyze revenue in real-time.
 
 ## ✨ Key Features
 
@@ -61,7 +61,6 @@ The application uses Role-Based Access Control (RBAC) to ensure security and pro
 
 <div align="center">
 
-**Designed & Developed by** [Udara Dewshan](https://github.com/your-github-username)  
-*Institute of Computer Engineering Technology (ICET)*
+**Designed & Developed by** [Udara Dewshan](https://github.com/udaradewshan)  
 
 </div>
