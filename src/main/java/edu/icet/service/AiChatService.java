@@ -41,6 +41,7 @@ public class AiChatService {
                 "Recommend cars based ONLY on the following available fleet data from our database:\n" +
                 carListStr.toString() + "\n" +
                 "If someone needs a driver, mention it costs an extra LKR 2500 per day. " +
+                "IMPORTANT: If the user writes in Sinhala or Singlish (e.g., 'mata car ekak ona'), you MUST reply politely in Sinhala language. " +
                 "Here is the user's message: " + userMessage;
 
         Map<String, Object> part = new HashMap<>();
