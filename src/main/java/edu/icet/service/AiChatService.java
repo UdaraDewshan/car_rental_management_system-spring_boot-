@@ -72,9 +72,13 @@ public class AiChatService {
 
             return resultText.trim();
 
+        } catch (org.springframework.web.client.HttpServerErrorException.ServiceUnavailable e) {
+            System.err.println("Gemini API is currently busy (503).");
+            return "Our AI assistant is currently helping many customers and taking a small breather.Please try asking again in a few seconds!";
+
         } catch (Exception e) {
             e.printStackTrace();
-            return "Sorry! API Connection Error. Please check backend. Reason: " + e.getMessage();
+            return "Sorry! I am currently taking a small break. Please try again in a few moments.";
         }
     }
 }
