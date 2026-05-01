@@ -1,4 +1,5 @@
 package edu.icet.model.dto;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
@@ -8,6 +9,7 @@ import lombok.*;
 @ToString
 
 public class CarDTO {
+    @Id
     private String carId;
     private String brand;
     private String seatCapacity;
@@ -15,4 +17,5 @@ public class CarDTO {
     private String fuelType;
     private double pricePerDay;
     private boolean states;
+    private String imageUrl;
 }

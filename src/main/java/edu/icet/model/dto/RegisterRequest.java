@@ -1,17 +1,14 @@
 package edu.icet.model.dto;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import lombok.*;
-
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class UserDTO {
-    private String userId;
+public class RegisterRequest {
     private String userName;
     private String email;
     private String phoneNumber;
     private String password;
-    private String role;
 }

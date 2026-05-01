@@ -1,4 +1,5 @@
 package edu.icet.model.dto;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
@@ -11,4 +12,5 @@ public class DriverDTO {
     private String name;
     private String licenseNo;
     private boolean states;
+    private String contactNumber;
 }

@@ -35,5 +35,6 @@ public class Booking {
     private Date endDate;
     private boolean withDriver;
     private Double totalPrice;
+    private String status = "PENDING";
 
 }

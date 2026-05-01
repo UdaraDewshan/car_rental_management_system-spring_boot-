@@ -16,4 +16,5 @@ public class Driver {
     private String name;
     private String licenseNo;
     private boolean states;
+    private String contactNumber;
 }
