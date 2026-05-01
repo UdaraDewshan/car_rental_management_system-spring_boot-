@@ -1,5 +1,7 @@
 package edu.icet.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.icet.model.entity.Car;
 import edu.icet.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +20,13 @@ public class AiChatService {
     private String apiKey;
 
     private final CarRepository carRepository;
-
     private final RestTemplate restTemplate = new RestTemplate();
 
     public String getAiResponse(String userMessage) {
-        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey;
+
+        String cleanKey = apiKey.replaceAll("[\"\\s+]", "");
+
+        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + cleanKey;
 
         List<Car> cars = carRepository.findAll();
         StringBuilder carListStr = new StringBuilder("Available Fleet:\n");
@@ -32,14 +36,12 @@ public class AiChatService {
                     .append(car.getFuelType()).append(", LKR ").append(car.getPricePerDay()).append(" per day)\n");
         }
 
-        String systemPrompt = "You are an intelligent and friendly AI Assistant for 'UdaraDirect.Car' car rental in Sri Lanka. " +
+        String fullPrompt = "You are an intelligent and friendly AI Assistant for 'UdaraDirect.Car' car rental in Sri Lanka. " +
                 "Always reply in short, concise, and helpful paragraphs. " +
                 "Recommend cars based ONLY on the following available fleet data from our database:\n" +
                 carListStr.toString() + "\n" +
                 "If someone needs a driver, mention it costs an extra LKR 2500 per day. " +
-                "Here is the user's message: ";
-
-        String fullPrompt = systemPrompt + userMessage;
+                "Here is the user's message: " + userMessage;
 
         Map<String, Object> part = new HashMap<>();
         part.put("text", fullPrompt);
@@ -55,15 +57,24 @@ public class AiChatService {
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
 
         try {
-            ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
-            List<Map<String, Object>> candidates = (List<Map<String, Object>>) response.getBody().get("candidates");
-            Map<String, Object> contentMap = (Map<String, Object>) candidates.get(0).get("content");
-            List<Map<String, Object>> parts = (List<Map<String, Object>>) contentMap.get("parts");
+            ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
 
-            return (String) parts.get(0).get("text");
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode rootNode = mapper.readTree(response.getBody());
+
+            String resultText = rootNode.path("candidates")
+                    .get(0)
+                    .path("content")
+                    .path("parts")
+                    .get(0)
+                    .path("text")
+                    .asText();
+
+            return resultText.trim();
+
         } catch (Exception e) {
             e.printStackTrace();
-            return "Sorry! I am currently taking a small break. Please try again in a few moments. 🤖";
+            return "Sorry! API Connection Error. Please check backend. Reason: " + e.getMessage();
         }
     }
 }
