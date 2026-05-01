@@ -26,7 +26,7 @@ public class AiChatService {
 
         String cleanKey = apiKey.replaceAll("[\"\\s+]", "");
 
-        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + cleanKey;
+        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=" + cleanKey;
 
         List<Car> cars = carRepository.findAll();
         StringBuilder carListStr = new StringBuilder("Available Fleet:\n");
